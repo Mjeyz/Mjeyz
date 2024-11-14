@@ -1,5 +1,5 @@
 ## Hi there 👋
-
+<p>I am student of software enginearing. i curently about Qt creater.</p>
 <!--
 **mjeyz/mjeyz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
