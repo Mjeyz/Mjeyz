@@ -1,4 +1,8 @@
-## Hi there 👋
+# Hello There 🙌
+<h2>I am learning Python for Machine learning from W3School and Udemy by Dr. Angela
+i cover almost OOPs </h2>
+
+<!--## Hi there 👋
 <p>I am student of software enginearing. i almost cover c++ basic consepts including OOPs && STL etc.🌱 I’m currently learning  about Qt creater.</p>
 <!--
 **mjeyz/mjeyz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
