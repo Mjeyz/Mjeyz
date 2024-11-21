@@ -1,2 +1,2 @@
-print("Hello World")
-print("Mudassir")
+f = open("Text.txt", "r")
+print(f.read())
