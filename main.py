@@ -1,2 +1,2 @@
-print("Hello World")
-print("Mudassir")
+name  = input("Enter Your Name : ")
+print(f"Welcom {name}😍")
