@@ -1,74 +1,66 @@
+# Display art
+from art import logo, vs
+from game_data import data
 import random
 
-def deal_cards():
-    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-    return random.choice(cards)
+
+def format_data(account):
+    """Takes the account data and returns the printable format."""
+    account_name = account["name"]
+    account_descr = account["description"]
+    account_country = account["country"]
+    return f"{account_name}, a {account_descr}, from {account_country}"
 
 
-def calculate_score(cards):
-    # Check for a blackjack (a hand with two cards: ace + 10)
-    if sum(cards) == 21 and len(cards) == 2:
-        return 0  # 0 represents a blackjack
-
-    # Replace ace (11) with 1 if the score exceeds 21
-    if 11 in cards and sum(cards) > 21:
-        cards.remove(11)
-        cards.append(1)
-
-    return sum(cards)
-
-def compare(u_score, c_score):
-    if u_score == c_score:
-        return "Draw 😊"
-    elif c_score == 0:
-        return "Lose opponent has a Blackjack 😢"
-    elif u_score == 0:
-        return "Win with Blackjack 😍"
-    elif u_score > 21:
-        return "You went over. you lose 😩"
-    elif c_score > 21:
-        return "Opponent went over. you win 🫡"
-    elif u_score > c_score:
-        return "You win 👌"
+def check_answer(a_followers, b_followers):
+    """Take a user's guess and the follower counts and returns if they got it right."""
+    if a_followers > b_followers:
+        return guess == "a"
     else:
-        return "You lose 😩😭"
+        return guess == "b"
 
-# Game initialization
-def play_game():
-    user_cards = []
-    computer_cards = []
-    computer_score = -1
-    user_score = -1
-    is_game_over = False
 
-    for _ in range(2):
-        user_cards.append(deal_cards())
-        computer_cards.append(deal_cards())
+print(logo)
+score = 0
+game_should_continue = True
+# Generate a random account from the game data
+account_b = random.choice(data)
 
-    while not is_game_over:
-        user_score = calculate_score(user_cards)
-        computer_score = calculate_score(computer_cards)
+# Make the game repeatable.
+while game_should_continue:
 
-        print(f"Your cards: {user_cards}, current score: {user_score}")
-        print(f"Computer's first card: {computer_cards[0]}")
+    # Making account at position B become the next account at position A.
+    account_a = account_b
+    account_b = random.choice(data)
 
-        # Check for blackjack or bust
-        if user_score == 0 or computer_score == 0 or user_score > 21:
-            is_game_over = True
-        else:
-            user_should_deal = input("Type 'y' to get another card, type 'n' to pass : ")
-            if user_should_deal == 'y':
-                user_cards.append(deal_cards())
-            else:
-                is_game_over = True
+    if account_a == account_b:
+        account_b = random.choice(data)
 
-    while computer_score != 0 and computer_score < 17:
-        computer_cards.append(deal_cards())
-        computer_score = calculate_score(computer_cards)
+    print(f"Compare A: {format_data(account_a)}.")
+    print(vs)
+    print(f"Against B: {format_data(account_b)}.")
 
-    print(f"Your final hand : {user_cards}, final score : {user_score}")
-    print(f"Computer final hand : {computer_cards}, final score {computer_score}")
-    print(compare(user_score, computer_score))
+    # Ask user for a guess.
+    guess = input("Who has more followers? Type 'A' or 'B': ").lower()
 
-while input("Do you want play game of Blackjack? Type 'y' or 'n' : ") == "y":
-    play_game()
+    # Clear the screen
+    print("\n" * 20)
+    print(logo)
+
+    # - Get follower count of each account
+    a_follower_count = account_a["follower_count"]
+    b_follower_count = account_b["follower_count"]
+
+    # Check if user is correct.
+    is_correct = check_answer(guess, a_follower_count, b_follower_count)
+
+    # Give user feedback on their guess.
+    # score keeping.
+    if is_correct:
+        score += 1
+        print(f"You're right! Current score {score}")
+    else:
+        print(f"Sorry, that's wrong. Final score: {score}.")
+        game_should_continue = False
+
+
