@@ -1,66 +1,89 @@
-# Display art
-from art import logo, vs
-from game_data import data
-import random
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    }
+}
+profet = 0
+resources = {
+    "water": 300,
+    "milk": 200,
+    "coffee": 100,
+}
 
+# TODO 4. Check resources sufficient?
+def is_resources_sufficient(order_ingredients):
+    for item in order_ingredients:
+        if order_ingredients[item] > resources[item]:
+            print(f"Sorry! there in not enough {item}.")
+            return False
+    return True
 
-def format_data(account):
-    """Takes the account data and returns the printable format."""
-    account_name = account["name"]
-    account_descr = account["description"]
-    account_country = account["country"]
-    return f"{account_name}, a {account_descr}, from {account_country}"
+# TODO 5. Process coins
+def process_coin():
+    print("Please insert coin.")
+    total = int(input("How many quarters?: ")) * 0.25
+    total += int(input("How many dimes? : ")) * 0.1
+    total += int(input("How many nickles? : ")) * 0.05
+    total += int(input("How many pennies? : ")) * 0.01
+    return total
 
-
-def check_answer(a_followers, b_followers):
-    """Take a user's guess and the follower counts and returns if they got it right."""
-    if a_followers > b_followers:
-        return guess == "a"
+# TODO 6. Check transaction successful?
+def  transaction_successful(money_received, drink_cost):
+    if money_received >= drink_cost:
+        change = round(money_received - drink_cost, 2)
+        print(f"Hare is ${change} in change.")
+        global profet
+        profet += drink_cost
+        return True
     else:
-        return guess == "b"
+        print("Sorry! that not enough money. Money refunded.")
+        return False
+
+# TODO 7. Make Coffee.
+def make_coffee(drink_name, order_ingredients):
+    for item in order_ingredients:
+        resources[item] -= order_ingredients[item]
+        print(f"Hare is Your {drink_name} ☕. Enjoy!")
 
 
-print(logo)
-score = 0
-game_should_continue = True
-# Generate a random account from the game data
-account_b = random.choice(data)
+is_true = True
+while is_true:
+    # TODO 1. Prompt user by asking “What would you like? (espresso/latte/cappuccino):
+    print("Note! price of espresso is $1.5, latte is $2.5 and cappuccino is $3.0")
+    user_choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
-# Make the game repeatable.
-while game_should_continue:
-
-    # Making account at position B become the next account at position A.
-    account_a = account_b
-    account_b = random.choice(data)
-
-    if account_a == account_b:
-        account_b = random.choice(data)
-
-    print(f"Compare A: {format_data(account_a)}.")
-    print(vs)
-    print(f"Against B: {format_data(account_b)}.")
-
-    # Ask user for a guess.
-    guess = input("Who has more followers? Type 'A' or 'B': ").lower()
-
-    # Clear the screen
-    print("\n" * 20)
-    print(logo)
-
-    # - Get follower count of each account
-    a_follower_count = account_a["follower_count"]
-    b_follower_count = account_b["follower_count"]
-
-    # Check if user is correct.
-    is_correct = check_answer(guess, a_follower_count, b_follower_count)
-
-    # Give user feedback on their guess.
-    # score keeping.
-    if is_correct:
-        score += 1
-        print(f"You're right! Current score {score}")
+    # TODO 2. Turn off the Coffee Machine by entering “off” to the prompt
+    if user_choice == "off":
+        is_true = False
+        # TODO 3. Print report.
+    elif user_choice == "report":
+        print(f"Water : {resources['water']}ml")
+        print(f"Milk : {resources['milk']}ml")
+        print(f"Coffee : {resources['coffee']}g")
+        print(f"Money : ${profet}")
     else:
-        print(f"Sorry, that's wrong. Final score: {score}.")
-        game_should_continue = False
-
-
+        drink = MENU[user_choice]
+        if is_resources_sufficient(drink["ingredients"]):
+            payment = process_coin()
+            if transaction_successful(payment, drink["cost"]):
+                make_coffee(user_choice, drink["ingredients"])
