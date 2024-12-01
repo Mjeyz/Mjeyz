@@ -1,7 +1,7 @@
 # Hello There 🙌
-<h2>I am learning Python for Machine learning from W3School and Udemy by Dr. Angela
-i cover almost OOPs </h2>
+<h2>I am learning Python for Machine learning from W3School and Udemy by Dr. Angela </h2>
 
+- 🌱 I’m currently learning Python(Programming Language).
 <!--## Hi there 👋
 <p>I am student of software enginearing. i almost cover c++ basic consepts including OOPs && STL etc.🌱 I’m currently learning  about Qt creater.</p>
 <!--
@@ -10,7 +10,6 @@ i cover almost OOPs </h2>
 Here are some ideas to get you started:
 
 - 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
 - 👯 I’m looking to collaborate on ...
 - 🤔 I’m looking for help with ...
 - 💬 Ask me about ...
