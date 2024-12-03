@@ -1,20 +1,33 @@
-from turtle import Turtle, Screen
-from random import choice
+import turtle
+import random
 
-timmy = Turtle()
-timmy.shape("turtle")
-colors = ["brown", "medium sea green", "dodger blue", "plum", "salmon", "goldenrod", "light slate gray", "gold"]
-def draw_shape(num_sides):
-    angle = 360 / num_sides
-    for _ in range(num_sides):
-        timmy.forward(100)
-        timmy.right(angle)
+# Set up the screen
+screen = turtle.Screen()
+screen.title("Random Walk")
 
-for sides_shapes_n in range(3, 11):
-    timmy.color(choice(colors))
-    draw_shape(sides_shapes_n)
+# Create a turtle
+t = turtle.Turtle()
+t.speed(0)  # Fastest speed
+t.pensize(10)  # Set default line thickness
+
+# Define colors
+colors = ["red", "blue", "green", "orange", "purple", "yellow", "pink", "cyan"]
 
 
-screen = Screen()
-timmy.hideturtle()
-screen.exitonclick()
+# Random walk function
+def random_walk(steps):
+    for _ in range(steps):
+        # Choose a random color
+        t.color(random.choice(colors))
+
+        # Move in a random direction
+        t.setheading(random.choice([0, 90, 180, 270]))  # 0°, 90°, 180°, 270°
+        t.forward(30)  # Move forward by a fixed step
+
+
+# Perform random walk
+random_walk(100)
+
+# Finish up
+t.hideturtle()
+screen.mainloop()
