@@ -1,21 +1,20 @@
-import turtle
+from turtle import Turtle, Screen
+from random import choice
 
-# Set up the screen
-screen = turtle.Screen()
-screen.title("Dotted Line Example")
+timmy = Turtle()
+timmy.shape("turtle")
+colors = ["brown", "medium sea green", "dodger blue", "plum", "salmon", "goldenrod", "light slate gray", "gold"]
+def draw_shape(num_sides):
+    angle = 360 / num_sides
+    for _ in range(num_sides):
+        timmy.forward(100)
+        timmy.right(angle)
 
-# Create a turtle
-t = turtle.Turtle()
-t.speed(5)  # Adjust speed (1 to 10 or 0 for max speed)
+for sides_shapes_n in range(3, 11):
+    timmy.color(choice(colors))
+    draw_shape(sides_shapes_n)
 
-# Draw a dotted line
-for _ in range(10):  # Change range for a longer line
-    t.pendown()  # Start drawing
-    t.forward(10)  # Draw a short line
-    t.penup()  # Stop drawing
-    t.forward(10)  # Move without drawing
 
-# Finish up
-t.hideturtle()  # Hide the turtle
-screen.mainloop()  # Keep the window open
-
+screen = Screen()
+timmy.hideturtle()
+screen.exitonclick()
