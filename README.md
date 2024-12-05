@@ -1,5 +1,5 @@
 # Hello There 🙌
-<h2>I am learning Python for Machine learning from W3School and Udemy by Dr. Angela </h2>
+<h2>I am learning Python for Machine learning from W3School and Udemy of Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps! by Dr. Angela Yu, Developer and Lead Instructor </h2>
 
 - 🌱 I’m currently learning Python(Programming Language).
 <!--## Hi there 👋
