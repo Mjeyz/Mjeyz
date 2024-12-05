@@ -1,22 +1,35 @@
 from turtle import Turtle, Screen
 
-# Create a turtle instance
-timmy = Turtle()
-timmy.shape("turtle")
-timmy.color("coral")
+# Create a turtle object
+tim = Turtle()
 
-# Draw a triangle
-timmy.forward(400)
-timmy.left(120)
-timmy.forward(400)
-timmy.home()  # Corrected with parentheses
+# Define functions to move the turtle
+def move_forward():
+    tim.forward(20)
 
-# Create a screen instance
-my_screen = Screen()
-print(my_screen.canvheight)  # Prints canvas height
+def move_backward():
+    tim.backward(20)
 
-# Close the window on click
-my_screen.exitonclick()  # Corrected with parentheses
+def turn_left():
+    new_heading = tim.heading() + 10
+    tim.setheading(new_heading)
 
-# Print the turtle object
-print(timmy)
+def turn_right():
+    new_heading = tim.heading() - 10
+    tim.setheading(new_heading)
+
+def clear():
+    tim.clear()
+    tim.penup()
+# Set up the screen
+screen = Screen()
+screen.listen()
+
+# Bind keys to functions
+screen.onkey(move_forward, key="w")  # Move forward with 'W' key
+screen.onkey(move_backward, key="s")  # Move backward with 'S' key
+screen.onkey(turn_left, key="s")
+screen.onkey(turn_right, key="s")
+
+# Close the screen on click
+screen.exitonclick()
