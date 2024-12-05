@@ -1,4 +1,4 @@
-# Hi There h👋
+# Hi There 👋
 <h3>I am learning Python for Machine learning from W3School and Udemy of <u>Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</u> by Dr. Angela Yu, Developer and Lead Instructor </h3>
 
 - 🌱 I’m currently learning Python(Programming Language).
