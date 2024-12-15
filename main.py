@@ -1,35 +1,35 @@
-from turtle import Turtle, Screen
+from tkinter import *
 
-# Create a turtle object
-tim = Turtle()
+def calculate_km():
+    miles = float(label_input.get())  # Get the input value
+    km = miles * 1.60934  # Convert miles to kilometers
+    km_label_result.config(text=f"{km:.2f}")  # Update the result label
 
-# Define functions to move the turtle
-def move_forward():
-    tim.forward(20)
+# Create main window
+window = Tk()
+window.minsize(width=200, height=200)
+window.title("Miles to Km Converter")
+window.config(padx=100, pady=20)
 
-def move_backward():
-    tim.backward(20)
+# Entry widget for input
+label_input = Entry(width=10)
+label_input.grid(column=1, row=0)
 
-def turn_left():
-    new_heading = tim.heading() + 10
-    tim.setheading(new_heading)
+# Labels
+miles_label = Label(text="Miles")
+miles_label.grid(column=2, row=0)
 
-def turn_right():
-    new_heading = tim.heading() - 10
-    tim.setheading(new_heading)
+is_equal_to_label = Label(text="is equal to")
+is_equal_to_label.grid(column=0, row=1)
 
-def clear():
-    tim.clear()
-    tim.penup()
-# Set up the screen
-screen = Screen()
-screen.listen()
+km_label_result = Label(text="0")
+km_label_result.grid(column=1, row=1)
 
-# Bind keys to functions
-screen.onkey(move_forward, key="w")  # Move forward with 'W' key
-screen.onkey(move_backward, key="s")  # Move backward with 'S' key
-screen.onkey(turn_left, key="s")
-screen.onkey(turn_right, key="s")
+km_label = Label(text="Km")
+km_label.grid(column=2, row=1)
 
-# Close the screen on click
-screen.exitonclick()
+# Button to trigger calculation
+calculate_button = Button(text="Calculate", command=calculate_km)
+calculate_button.grid(column=1, row=2)
+# Run the main loop
+window.mainloop()
