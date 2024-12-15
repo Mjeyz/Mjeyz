@@ -3,8 +3,6 @@
 
 - 🌱 I’m currently learning Python(Programming Language).
 <!--## Hi there 👋
-<p>I am student of software enginearing. i almost cover c++ basic consepts including OOPs && STL etc.🌱 I’m currently learning  about Qt creater.</p>
-<!--
 **mjeyz/mjeyz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
